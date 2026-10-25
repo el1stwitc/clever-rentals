@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import Icon from "@/components/ui/icon";
-import { LOGO_URL, PHONE, PHONE_HREF, TELEGRAM_HREF, WHATSAPP_HREF } from "@/lib/apartments";
+import { PHONE, PHONE_HREF, TELEGRAM_HREF, WHATSAPP_HREF } from "@/lib/apartments";
+import { CloverBadge } from "@/components/site/Header";
 
 export default function Footer() {
   const base = import.meta.env.BASE_URL || "/";
@@ -8,7 +9,7 @@ export default function Footer() {
     <footer className="px-4 pb-24 lg:pb-8 pt-12 sm:px-[58px]">
       <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <img src={LOGO_URL} alt="Клевер — гостевые квартиры" loading="lazy" className="h-20 w-[142px] rounded-plate object-cover" />
+          <CloverBadge className="h-20 w-[142px]" />
           <p className="mt-4 max-w-xs text-[14px] text-muted-foreground">
             Сеть гостевых квартир с прямой бронью. Чисто, тихо, бесконтактно — как дома, только лучше.
           </p>

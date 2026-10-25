@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import Icon from "@/components/ui/icon";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { LOGO_URL, PHONE, PHONE_HREF, TELEGRAM_HREF, WHATSAPP_HREF } from "@/lib/apartments";
+import { cn } from "@/lib/utils";
 
 const base = import.meta.env.BASE_URL || "/";
 const NAV = [
@@ -11,12 +12,52 @@ const NAV = [
   { href: `${base}#rules`, label: "Как заселиться" },
 ];
 
+export function CloverBadge({
+  className = "h-9 w-[56px] sm:h-10 sm:w-[68px]",
+  imgClassName = "h-full w-full object-cover",
+}: {
+  className?: string;
+  imgClassName?: string;
+}) {
+  const [hasError, setHasError] = useState(false);
+
+  return (
+    <span className={cn("relative block overflow-hidden rounded-plate bg-[#1b3022] shadow-sm shrink-0", className)}>
+      {/* Векторная эмблема клевера с замочной скважиной — рендерится мгновенно, без сети и ошибок */}
+      <svg
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-full w-full object-cover"
+        aria-hidden="true"
+      >
+        <rect width="64" height="64" rx="14" fill="#1b3022" />
+        <g stroke="#c5a25d" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none">
+          <circle cx="23" cy="23" r="9.5" />
+          <circle cx="41" cy="23" r="9.5" />
+          <circle cx="23" cy="41" r="9.5" />
+          <circle cx="41" cy="41" r="9.5" />
+        </g>
+        <circle cx="32" cy="30" r="3.5" fill="#c5a25d" />
+        <path d="M29.5 32h5l1.5 8h-8z" fill="#c5a25d" />
+      </svg>
+      {/* Полноразмерное изображение поверх эмблемы. Если не загрузилось — скрывается без битой иконки */}
+      {!hasError && (
+        <img
+          src={LOGO_URL}
+          alt="Клевер"
+          onError={() => setHasError(true)}
+          className={cn("absolute inset-0", imgClassName)}
+        />
+      )}
+    </span>
+  );
+}
+
 export function Logo() {
   return (
     <Link to="/" className="flex items-center gap-2 sm:gap-4 shrink-0 group" aria-label="Клевер — на главную">
-      <span className="block h-9 w-[56px] sm:h-10 sm:w-[68px] overflow-hidden rounded-plate bg-primary shadow-sm shrink-0">
-        <img src={LOGO_URL} alt="Клевер" className="h-full w-full object-cover" />
-      </span>
+      <CloverBadge />
       <span className="flex flex-col leading-none">
         <span className="tracking-logo text-[13px] sm:text-[15px] font-semibold sm:font-normal text-foreground">КЛЕВЕР</span>
         <span className="mt-1 text-[8px] sm:text-[10px] uppercase tracking-[0.16em] sm:tracking-[0.22em] text-gold font-medium">гостевые квартиры</span>
@@ -77,9 +118,7 @@ export default function Header() {
           <SheetContent side="right" className="bg-background w-[86vw] max-w-sm flex flex-col justify-between p-6">
             <div>
               <div className="flex items-center gap-3">
-                <span className="block h-9 w-[56px] overflow-hidden rounded-plate bg-primary shadow-sm">
-                  <img src={LOGO_URL} alt="Клевер" className="h-full w-full object-cover" />
-                </span>
+                <CloverBadge className="h-9 w-[56px]" />
                 <div className="flex flex-col leading-none">
                   <SheetTitle className="tracking-logo text-[14px] font-semibold text-foreground">КЛЕВЕР</SheetTitle>
                   <span className="mt-1 text-[9px] uppercase tracking-[0.2em] text-gold font-medium">гостевые квартиры</span>
