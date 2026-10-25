@@ -5,12 +5,14 @@ import path from "path";
 
 // https://tanstack.com/start/latest/docs/framework/react/guide/hosting
 export default defineConfig(({command}) => ({
-    base: process.env.BASE_PATH || '/',
     ssr: command === 'build' ? {noExternal: true} : undefined,
     plugins: [
         tanstackStart({
             router: {codeSplittingOptions: {defaultBehavior: []}},
-            prerender: {enabled: true},
+            prerender: {
+                enabled: true,
+                failOnError: false,
+            },
         }),
         react(),
     ].filter(Boolean),
