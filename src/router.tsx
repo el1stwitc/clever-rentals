@@ -9,6 +9,7 @@ export function getRouter() {
     const queryClient = new QueryClient();
     return createRouter({
         routeTree,
+        basepath: import.meta.env.BASE_URL || '/',
         scrollRestoration: true,
         defaultNotFoundComponent: NotFound,
         Wrap: ({children}) => (

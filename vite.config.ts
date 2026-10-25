@@ -5,6 +5,7 @@ import path from "path";
 
 // https://tanstack.com/start/latest/docs/framework/react/guide/hosting
 export default defineConfig(({command}) => ({
+    base: '/clever-rentals/',
     ssr: command === 'build' ? {noExternal: true} : undefined,
     plugins: [
         tanstackStart({
