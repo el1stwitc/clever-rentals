@@ -3,6 +3,7 @@ import Icon from "@/components/ui/icon";
 import { LOGO_URL, PHONE, PHONE_HREF, TELEGRAM_HREF, WHATSAPP_HREF } from "@/lib/apartments";
 
 export default function Footer() {
+  const base = import.meta.env.BASE_URL || "/";
   return (
     <footer className="px-4 pb-24 lg:pb-8 pt-12 sm:px-[58px]">
       <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
@@ -14,8 +15,8 @@ export default function Footer() {
         </div>
         <div className="space-y-2 text-[14px]">
           <div className="mb-3 text-[12px] uppercase tracking-[0.22em] text-gold">Гостям</div>
-          <a href="/#catalog" className="block hover:text-gold">Все квартиры</a>
-          <a href="/#map" className="block hover:text-gold">Квартиры на карте</a>
+          <a href={`${base}#catalog`} className="block hover:text-gold">Все квартиры</a>
+          <a href={`${base}#map`} className="block hover:text-gold">Квартиры на карте</a>
           <Link to="/bookings" className="block hover:text-gold">Мои бронирования</Link>
           <Link to="/admin" className="block text-muted-foreground hover:text-gold">Панель управления</Link>
         </div>

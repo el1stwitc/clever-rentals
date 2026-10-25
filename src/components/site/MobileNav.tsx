@@ -5,13 +5,14 @@ import { cn } from "@/lib/utils";
 
 export default function MobileNav() {
   const { pathname } = useLocation();
+  const base = import.meta.env.BASE_URL || "/";
 
   // Hide mobile bottom nav on apartment detail page (which has its own sticky booking action bar) and checkout
   if (pathname.startsWith("/apartment/") || pathname.startsWith("/checkout")) {
     return null;
   }
 
-  const isHome = pathname === "/";
+  const isHome = pathname === "/" || pathname === "" || pathname === base;
   const isBookings = pathname === "/bookings";
 
   const handleNavClick = (hashId: string) => (e: React.MouseEvent) => {
@@ -31,7 +32,7 @@ export default function MobileNav() {
     >
       <div className="grid grid-cols-4 items-center">
         <a
-          href="/#catalog"
+          href={`${base}#catalog`}
           onClick={handleNavClick("catalog")}
           className={cn(
             "flex flex-col items-center gap-1 py-1 text-[11px] font-medium transition active:scale-95",
@@ -45,7 +46,7 @@ export default function MobileNav() {
         </a>
 
         <a
-          href="/#map"
+          href={`${base}#map`}
           onClick={handleNavClick("map")}
           className="flex flex-col items-center gap-1 py-1 text-[11px] font-medium text-muted-foreground hover:text-foreground transition active:scale-95"
         >

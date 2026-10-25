@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const LOGO_URL = "/images/logo.png?v=2";
+export const LOGO_URL = `${(import.meta.env.BASE_URL || "/").replace(/\/?$/, "/")}images/logo.png?v=2`;
 export const PHONE = "+7 900 000-00-00";
 export const PHONE_HREF = "tel:+79000000000";
 export const WHATSAPP_HREF = "https://wa.me/79000000000";

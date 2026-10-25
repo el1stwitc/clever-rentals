@@ -4,10 +4,11 @@ import Icon from "@/components/ui/icon";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { LOGO_URL, PHONE, PHONE_HREF, TELEGRAM_HREF, WHATSAPP_HREF } from "@/lib/apartments";
 
+const base = import.meta.env.BASE_URL || "/";
 const NAV = [
-  { href: "/#catalog", label: "Квартиры" },
-  { href: "/#map", label: "На карте" },
-  { href: "/#rules", label: "Как заселиться" },
+  { href: `${base}#catalog`, label: "Квартиры" },
+  { href: `${base}#map`, label: "На карте" },
+  { href: `${base}#rules`, label: "Как заселиться" },
 ];
 
 export function Logo() {

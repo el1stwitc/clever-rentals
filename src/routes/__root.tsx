@@ -35,7 +35,11 @@ export const Route = createRootRoute({
                 href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap",
             },
             {rel: "stylesheet", href: appCss},
-            {rel: "icon", type: "image/svg+xml", href: "/favicon.svg"},
+            {
+                rel: "icon",
+                type: "image/svg+xml",
+                href: `${(import.meta.env.BASE_URL || "/").replace(/\/?$/, "/")}favicon.svg`,
+            },
         ],
         scripts: [],
     }),
